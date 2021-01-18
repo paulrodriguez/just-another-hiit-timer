@@ -5,12 +5,19 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-  entry: "./src/components/index.tsx",
   target: "web",
   mode: "development",
   output: {
     path: path.resolve(__dirname, "dev"),
     filename: "bundle.js",
   },
-  devtool: 'inline-source-map'
+  devtool: 'inline-source-map',
+  devServer: {
+    //index: 'index.dev.html',
+    contentBase: path.join(__dirname, 'dev'),
+    compress: true,
+    port: 9000,
+    host: '0.0.0.0',
+    historyApiFallback: true
+  },
 });

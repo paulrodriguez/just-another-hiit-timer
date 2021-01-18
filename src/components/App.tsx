@@ -8,24 +8,21 @@ import {
   NavLink
 } from "react-router-dom";
 
-import WorkoutList from './WorkoutList';
+import {WorkoutList} from './Workout/List';
+import { Header } from './Header';
 
 import { Guide } from './Guide';
+import { CountdownTimer } from 'countdown-timer';
 
+const testItems = [{id:1, name:"Workout 1"},{id:2, name:"Workout 2"}];
 
 export const App = () => (
   <>
-  <h1>Just Another HIIT Timer</h1>
   <HashRouter>
-  <nav>
-    <ul className={"menu"}>
-      <li className={"item"}><NavLink to="/user-guide">Guide</NavLink></li>
-      <li className={"item"}><NavLink to="/">Workouts</NavLink></li>
-    </ul>
-  </nav>
+  <Header />
   <Switch>
     <Route exact path="/">
-    <WorkoutList />
+    <WorkoutList items={testItems} />
     </Route>
     <Route path="/user-guide">
     <Guide />
