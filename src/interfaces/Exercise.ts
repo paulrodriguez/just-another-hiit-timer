@@ -1,10 +1,12 @@
-import { Time } from './Time';
+import { ITime } from './Time';
 
-interface Exercise {
-  warmup: Time,
-  work: Time,
-  cooldown: Time,
+export interface IExercise {
+  id: string,
+  warmup: ITime,
+  work: ITime,
+  cooldown: ITime,
   name: string
   sort_order: number,
-  workout_id: string
+  workout_id: string,
+  toJSON(): string
 }

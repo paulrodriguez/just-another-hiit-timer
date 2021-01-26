@@ -1,4 +1,5 @@
-export interface Time {
+export interface ITime {
   minutes: number,
-  seconds: number
+  seconds: number,
+  toJSON(): string
 }

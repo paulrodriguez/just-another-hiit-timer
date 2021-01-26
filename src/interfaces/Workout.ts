@@ -1,7 +1,9 @@
-import 'Exercise' from './Exercise';
+import IExercise from './Exercise';
 
-export interface Workout {
+export interface IWorkout {
+  id: string,
   name: string,
   sort_order: number,
-  exercises?: Exercise[]
+  exercises?: IExercise[],
+  toJSON(): string
 };

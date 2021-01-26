@@ -1,8 +1,12 @@
 import {Workout} from '../interfaces/Workout';
 import {Exercise} from '../interfaces/Exercise';
-class HTML5WorkoutRepository {
-  constructor() {
+import {WorkoutRepository} from '../interfaces/WorkoutRepository';
 
+export default class HTML5WorkoutRepository {
+  constructor() {
+    if(!window.localStorage) {
+      throw new Error('local storage is not defined for your browser');
+    }
   }
 
   /**
@@ -10,6 +14,13 @@ class HTML5WorkoutRepository {
    *
    */
   save(workout: Workout) {
+    if(workout.name == null) {
+      throw new Error('name is required');
+    }
+
+    data = workout.toJson();
+
+    window.localStorage.setItem(workout.id, data);
 
   }
 
@@ -38,6 +49,10 @@ class HTML5WorkoutRepository {
    * update the sort value for a list of timers in a workout
    */
   sortExercises() {
+
+  }
+
+  list(): Workout[] {
 
   }
 }
