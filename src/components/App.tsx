@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 
 import {WorkoutList} from './Workout/List';
+import {WorkoutEdit} from './Workout/Edit';
 import { Header } from './Header';
 
 import { Guide } from './Guide';
@@ -27,9 +28,8 @@ export const App = () => (
     <Route path="/user-guide">
     <Guide />
     </Route>
-    <Route path="/workout/new">
-    </Route>
     <Route path="/workout/edit/:id">
+    <WorkoutEdit />
     </Route>
   </Switch>
   </HashRouter>
