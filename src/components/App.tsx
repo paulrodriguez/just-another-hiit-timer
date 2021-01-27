@@ -25,12 +25,8 @@ export const App = () => (
     <Route exact path="/">
     <WorkoutList items={testItems} />
     </Route>
-    <Route path="/user-guide">
-    <Guide />
-    </Route>
-    <Route path="/workout/edit/:id">
-    <WorkoutEdit />
-    </Route>
+    <Route path="/user-guide" component={Guide} />
+    <Route path="/workout/new" render={props=>(<WorkoutEdit {...props} />)} />
   </Switch>
   </HashRouter>
   </>
