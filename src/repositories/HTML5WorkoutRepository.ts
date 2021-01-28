@@ -34,19 +34,19 @@ export default class HTML5WorkoutRepository {
   /**
    * save an exercise for a workout
    */
-  addExercise(exercise: Exercise) {
+  addExercise(exercise: Exercise, workout_id: string) {
 
   }
 
   /**
    * delete a timer in a workout
    */
-  deleteExercise(exercise: Exercise) {
+  deleteExercise(exercise: Exercise, workout_id: string) {
 
   }
 
   /**
-   * update the sort value for a list of timers in a workout
+   * update the sort value for a list of exercises in a workout
    */
   sortExercises() {
 

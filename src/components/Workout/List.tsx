@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { WorkoutListItem } from './ListItem';
 import {WorkoutEdit} from './Edit';
+import {Button, Row, Col, Container, InputGroup, FormControl} from 'react-bootstrap';
 import {
     NavLink,
     HashRouter,
@@ -18,11 +19,14 @@ export class WorkoutList extends React.Component<any, any> {
     <WorkoutListItem item={item} key={item.id} />
   );
     return (
-      <>
-      <NavLink to="/workout/new"><Button variant="primary">Add</Button></NavLink>
+      <Container>
+      <Row>
+        <Col><h2>Workouts</h2></Col>
+        <Col><NavLink to="/workout/new"><Button variant="primary">Add</Button></NavLink></Col>
+      </Row>
       <div id="workouts">
       </div>
-      </>
+      </Container>
     )
   }
 }

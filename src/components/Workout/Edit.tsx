@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 
-import {ExerciseModal} from './ExerciseModal';
+import {ExerciseModal} from './Exercise/ExerciseModal';
 
-import {Button, Row, Col} from 'react-bootstrap';
+import {Button, Row, Col, Container, InputGroup, FormControl} from 'react-bootstrap';
 
 
 export class WorkoutEdit extends React.Component<any, any> {
@@ -52,19 +52,24 @@ export class WorkoutEdit extends React.Component<any, any> {
 
   render() {
     return (
-      <>
+      <Container>
+      <Row>
       <h1 className={'text-center'}>{this.state.title}</h1>
-      <form>
-        <input type="text" name="name" placeholder="Workout Name" onChange={this.handleChange} />
+      </Row>
+        <InputGroup size="sm" className="mb-3">
+          <InputGroup.Prepend>
+            <InputGroup.Text id="inputGroup-sizing-sm">Name</InputGroup.Text>
+          </InputGroup.Prepend>
+          <FormControl aria-label="Small" name="name" placeholder="Workout Name" value={this.state.name} onChange={this.handleChange} aria-describedby="inputGroup-sizing-sm" />
+        </InputGroup>
         <Row>
           <Col><h2>Exercises</h2></Col>
           <Col><Button onClick={this.openModal} variant="primary">+ Add</Button></Col>
         </Row>
         <div id="exercises">
         </div>
-      </form>
       <ExerciseModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} />
-      </>
+      </Container>
     );
   }
 }
