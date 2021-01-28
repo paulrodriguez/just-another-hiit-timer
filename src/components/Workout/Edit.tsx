@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import {ExerciseModal} from './ExerciseModal';
 
+import {Button, Row, Col} from 'react-bootstrap';
 
 
 export class WorkoutEdit extends React.Component<any, any> {
@@ -52,10 +53,13 @@ export class WorkoutEdit extends React.Component<any, any> {
   render() {
     return (
       <>
-      <h1>{this.state.title}</h1>
+      <h1 className={'text-center'}>{this.state.title}</h1>
       <form>
         <input type="text" name="name" placeholder="Workout Name" onChange={this.handleChange} />
-        <div><span>Exercises</span><button onClick={this.openModal}>Add</button></div>
+        <Row>
+          <Col><h2>Exercises</h2></Col>
+          <Col><Button onClick={this.openModal} variant="primary">+ Add</Button></Col>
+        </Row>
         <div id="exercises">
         </div>
       </form>

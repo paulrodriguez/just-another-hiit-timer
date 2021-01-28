@@ -7,6 +7,8 @@ import {
     Route,
     Switch} from 'react-router-dom';
 
+  import {Button} from 'react-bootstrap';
+
 export class WorkoutList extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
@@ -17,7 +19,7 @@ export class WorkoutList extends React.Component<any, any> {
   );
     return (
       <>
-      <NavLink to="/workout/new">Add</NavLink>
+      <NavLink to="/workout/new"><Button variant="primary">Add</Button></NavLink>
       <div id="workouts">
       </div>
       </>
