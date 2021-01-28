@@ -18,11 +18,8 @@ export class WorkoutList extends React.Component<any, any> {
     return (
       <>
       <NavLink to="/workout/new">Add</NavLink>
-      <HashRouter>
-        <Switch>
-          <Route path="/new" render={props=>(<WorkoutEdit {...props} />)} />
-        </Switch>
-      </HashRouter>
+      <div id="workouts">
+      </div>
       </>
     )
   }
