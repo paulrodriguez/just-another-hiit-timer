@@ -1,6 +1,10 @@
 import * as React from 'react';
 import * as Modal from 'react-modal';
-import {InputGroup,FormControl, Button,Container,Row,Col} from 'react-bootstrap';
+import {InputGroup,FormControl, Button,Container,Row,Col, Form} from 'react-bootstrap';
+
+import {Minutes} from '../../Time/Minutes';
+import {Seconds} from '../../Time/Seconds';
+
 const customStyles = {
   content : {
     top                   : '50%',
@@ -58,33 +62,79 @@ export class ExerciseModal extends React.Component<any,any> {
         <Col xs="8"><h2>{this.props.name || 'Add Exercise'}</h2></Col>
         <Col xs={'auto'}>  <Button variant="outline-dark" onClick={this.props.closeModal}>Close</Button></Col>
         </Row>
-        <InputGroup size="sm" className="mb-3">
-          <InputGroup.Prepend>
-            <InputGroup.Text id="inputGroup-sizing-sm">Name</InputGroup.Text>
-          </InputGroup.Prepend>
-          <FormControl aria-label="Small" name="name" value={this.state.name} onChange={this.handleChange} aria-describedby="inputGroup-sizing-sm" />
-        </InputGroup>
-        <InputGroup size="sm" className="mb-3">
-          <InputGroup.Prepend>
-            <InputGroup.Text id="inputGroup-sizing-sm">Warmp Up</InputGroup.Text>
-          </InputGroup.Prepend>
-          <FormControl type="number" min="0" aria-label="Warmup Minutes" value={this.state.warmup_minutes} name="warmup_minutes" placeholder={"Minutes"} onChange={this.handleChange} aria-describedby="inputGroup-sizing-sm" />
-          <FormControl type="number" min="0" max="59" aria-label="Warmup Seconds" value={this.state.warmup_seconds} name="warmup_seconds" placeholder={"Seconds"} onChange={this.handleChange} aria-describedby="inputGroup-sizing-sm" />
-        </InputGroup>
-        <InputGroup size="sm" className="mb-3">
-          <InputGroup.Prepend>
-            <InputGroup.Text id="inputGroup-sizing-sm">Work</InputGroup.Text>
-          </InputGroup.Prepend>
-          <FormControl type="number" min="0" aria-label="Work Minutes" value={this.state.work_minutes} name="work_minutes" placeholder={"Minutes"} onChange={this.handleChange} aria-describedby="inputGroup-sizing-sm" />
-          <FormControl type="number" min="0" max="59" aria-label="Work Seconds" value={this.state.work_seconds} name="work_seconds" placeholder={"Seconds"} onChange={this.handleChange} aria-describedby="inputGroup-sizing-sm" />
-        </InputGroup>
-        <InputGroup size="sm" className="mb-3">
-          <InputGroup.Prepend>
-            <InputGroup.Text id="inputGroup-sizing-sm">Cooldown</InputGroup.Text>
-          </InputGroup.Prepend>
-          <FormControl type="number" min="0" aria-label="Cooldown Minutes" value={this.state.cooldown_minutes} name="cooldown_minutes" placeholder={"Minutes"} onChange={this.handleChange} aria-describedby="inputGroup-sizing-sm" />
-          <FormControl type="number" min="0" max="59" aria-label="Cooldown Seconds" value={this.state.cooldown_seconds} name="cooldown_seconds" placeholder={"Seconds"} onChange={this.handleChange} aria-describedby="inputGroup-sizing-sm" />
-        </InputGroup>
+        <Row>
+          <Col xs="12">
+            <InputGroup size="sm" className="mb-3">
+              <InputGroup.Prepend>
+                <InputGroup.Text id="inputGroup-sizing-sm">Name</InputGroup.Text>
+              </InputGroup.Prepend>
+              <FormControl aria-label="Small" name="name"
+                value={this.state.name} onChange={this.handleChange}
+                aria-describedby="inputGroup-sizing-sm" />
+            </InputGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs="4">
+          </Col>
+          <Col xs="4">
+          Minutes
+          </Col>
+          <Col xs="4">
+          Seconds
+          </Col>
+        </Row>
+        <Row>
+          <Col xs="4">
+            <InputGroup.Prepend>
+              <InputGroup.Text id="inputGroup-sizing-sm">Warmp Up</InputGroup.Text>
+            </InputGroup.Prepend>
+          </Col>
+          <Col xs="4">
+            <Minutes label="Warmup Minutes" value={this.state.warmup_minutes}
+              placeholder="Minutes" name="warmup_minutes"
+              onChange={this.handleChange} />
+          </Col>
+          <Col xs="4">
+            <Seconds label="Warmup Seconds" value={this.state.warmup_seconds}
+              placeholder="Minutes" name="warmup_seconds"
+              onChange={this.handleChange} />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs="4">
+            <InputGroup.Prepend>
+              <InputGroup.Text id="inputGroup-sizing-sm">Work</InputGroup.Text>
+            </InputGroup.Prepend>
+          </Col>
+          <Col xs="4">
+          <Minutes label="Work Minutes" value={this.state.work_minutes}
+            placeholder="Minutes" name="work_minutes"
+            onChange={this.handleChange} />
+          </Col>
+          <Col xs="4">
+            <Seconds label="Work Seconds" value={this.state.work_seconds}
+              placeholder="Minutes" name="work_seconds"
+              onChange={this.handleChange} />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs="4">
+            <InputGroup.Prepend>
+              <InputGroup.Text id="inputGroup-sizing-sm">Cooldown</InputGroup.Text>
+            </InputGroup.Prepend>
+          </Col>
+          <Col xs="4">
+            <Minutes label="Cooldown Minutes" value={this.state.cooldown_minutes}
+              placeholder="Minutes" name="cooldown_minutes"
+              onChange={this.handleChange} />
+          </Col>
+          <Col xs="4">
+          <Seconds label="Cooldown Seconds" value={this.state.cooldown_seconds}
+            placeholder="Minutes" name="cooldown_seconds"
+            onChange={this.handleChange} />
+          </Col>
+        </Row>
         <Button variant="success" onClick={this.saveExercise}>Add</Button>
         </Container>
     </Modal>

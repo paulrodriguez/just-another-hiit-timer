@@ -1,5 +1,5 @@
-import { IWorkout } from '../interfaces/Workout';
-import  { IExercise } from '../interfaces/Exercise';
+import { IWorkout } from '../interfaces/IWorkout';
+import  { IExercise } from '../interfaces/IExercise';
 
 export class Workout implements IWorkout {
   id: string;
@@ -18,7 +18,7 @@ export class Workout implements IWorkout {
       id: this.id,
       name: this.name,
       sort_order: this.sort_order,
-      exercises: this.exercises.map(exercise=>exercise.toJSON())
+      exercises: this.exercises.map(exercise=>JSON.parse(exercise.toJSON()))
     };
 
     return JSON.stringify(data);
