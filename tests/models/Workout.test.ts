@@ -19,11 +19,11 @@ test('workout parses to JSON', () => {
 // @TODO finish this test
 test('workout with exercises parses to JSON', () => {
   let workout = new Workout('213','run',0);
-  workout.exercises = [new Exercise('ex_123_2','Exercise 1','213',0),
+  workout.exercises = [new Exercise('ex_123_1','Exercise 1','213',0),
     new Exercise('ex_123_2','Exercise 2','213',1)]
 
   let value = "{\"id\":\"213\",\"name\":\"run\",\"sort_order\":0,";
-  value += "\"exercises\":[{\"id\":\"ex_123_1\",\"name\":\"Exercise 1\",\"workout_id\":\"213\",\"sort_order\":0}"
-  value += "{\"id\":\"ex_123_2\",\"name\":\"Exercise 2\",\"workout_id\":\"213\",\"sort_order\":1}]}";
+  value += "\"exercises\":[{\"id\":\"ex_123_1\",\"name\":\"Exercise 1\",\"workout_id\":\"213\",\"sort_order\":0,\"warmup\":null,\"work\":null,\"cooldown\":null},"
+  value += "{\"id\":\"ex_123_2\",\"name\":\"Exercise 2\",\"workout_id\":\"213\",\"sort_order\":1,\"warmup\":null,\"work\":null,\"cooldown\":null}]}";
   expect(workout.toJSON()).toBe(value);
 });

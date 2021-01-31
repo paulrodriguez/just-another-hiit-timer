@@ -25,8 +25,8 @@ export class Exercise implements IExercise {
       workout_id: this.workout_id,
       sort_order: this.sort_order,
       warmup: (this.warmup) ? this.warmup.toJSON() : null,
-      cooldown: (this.cooldown) ? this.cooldown.toJSON() : null,
-      work: (this.work) ? this.work.toJSON() : null
+      work: (this.work) ? this.work.toJSON() : null,
+      cooldown: (this.cooldown) ? this.cooldown.toJSON() : null
     };
 
     return JSON.stringify(data);
