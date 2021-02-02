@@ -8,7 +8,9 @@ import {
     Route,
     Switch} from 'react-router-dom';
 
-  import {Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
+
+import { Provider } from 'react-redux';
 
 export class WorkoutList extends React.Component<any, any> {
   constructor(props: any) {
