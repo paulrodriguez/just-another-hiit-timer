@@ -1,14 +1,7 @@
 import WorkoutRepositoryFactory from '../repositories/WorkoutRepositoryFactory';
 
 let repository = WorkoutRepositoryFactory.create('local');
-export const addExercise = () {
-  repository.addExercise();
-}
 
-export const deleteExercise = () {
-
-}
-
-export const sortExercises = () {
-
+export const addWorkout = (workout) =< {
+  repository.save(workout);
 }
