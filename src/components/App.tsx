@@ -15,19 +15,23 @@ import { Header } from './Header';
 import { Guide } from './Guide';
 import { CountdownTimer } from 'countdown-timer';
 
+import { Provider } from 'react-redux'
+
 const testItems = [{id:1, name:"Workout 1"},{id:2, name:"Workout 2"}];
 
 export const App = () => (
   <>
-  <HashRouter>
-  <Header />
-  <Switch>
-    <Route exact path="/">
-    <WorkoutList items={testItems} />
-    </Route>
-    <Route path="/user-guide" component={Guide} />
-    <Route path="/workout/new" render={props=>(<WorkoutEdit {...props} />)} />
-  </Switch>
-  </HashRouter>
+  <Provider store={store}>
+    <HashRouter>
+    <Header />
+    <Switch>
+      <Route exact path="/">
+      <WorkoutList items={testItems} />
+      </Route>
+      <Route path="/user-guide" component={Guide} />
+      <Route path="/workout/new" render={props=>(<WorkoutEdit {...props} />)} />
+    </Switch>
+    </HashRouter>
+  </Provider>
   </>
 );

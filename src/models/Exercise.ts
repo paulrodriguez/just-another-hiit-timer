@@ -11,7 +11,12 @@ export class Exercise implements IExercise {
   workout_id: string;
 
 
-  constructor(id: string, name: string, workout_id: string, sort_order: number=0) {
+  constructor(
+    id: string,
+    name: string,
+    workout_id: string,
+    sort_order: number=0
+  ) {
     this.id         = id;
     this.name       = name;
     this.workout_id = workout_id;
@@ -31,5 +36,4 @@ export class Exercise implements IExercise {
 
     return JSON.stringify(data);
   }
-
 }
