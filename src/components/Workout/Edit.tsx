@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { connect } from 'react-redux'
 
 import {ExerciseModal} from './Exercise/ExerciseModal';
 
@@ -22,12 +23,20 @@ export class WorkoutEdit extends React.Component<any, any> {
     this.handleChange = this.handleChange.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
-    console.log(props);
-  }
-
-  handleChange() {
 
   }
+
+  handleChange(event: any) {
+    const target = event.target;
+
+    const value = target.value;
+    const name = target.name
+
+    this.setState({
+      [name]: value
+    });
+  }
+
   componentDidMount() {
     if('match' in this.props) {
       if('path' in this.props.match && this.props.match.path == '/workout/new') {

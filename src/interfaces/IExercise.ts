@@ -1,6 +1,6 @@
-import { ITime } from './ITime';
+import ITime from './ITime';
 
-export interface IExercise {
+export default interface IExercise {
   id: string,
   warmup: ITime,
   work: ITime,

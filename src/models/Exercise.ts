@@ -1,5 +1,5 @@
-import  { IExercise } from '../interfaces/IExercise';
-import {ITime} from '../interfaces/ITime';
+import  IExercise from '../interfaces/IExercise';
+import ITime from '../interfaces/ITime';
 
 export class Exercise implements IExercise {
   id: string;

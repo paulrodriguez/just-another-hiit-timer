@@ -1,4 +1,4 @@
-import  { ITime } from '../interfaces/ITime';
+import ITime from '../interfaces/ITime';
 
 export class Time implements ITime {
   minutes: number;

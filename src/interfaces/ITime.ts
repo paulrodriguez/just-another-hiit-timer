@@ -1,4 +1,4 @@
-export interface ITime {
+export default interface ITime {
   minutes: number,
   seconds: number,
   toJSON(): string

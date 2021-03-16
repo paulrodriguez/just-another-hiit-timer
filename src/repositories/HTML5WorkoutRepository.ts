@@ -1,6 +1,6 @@
-import {Workout} from '../interfaces/Workout';
-import {Exercise} from '../interfaces/Exercise';
-import {WorkoutRepository} from '../interfaces/WorkoutRepository';
+import IWorkout from '../interfaces/IWorkout';
+import IExercise from '../interfaces/IExercise';
+import IWorkoutRepository from '../interfaces/IWorkoutRepository';
 
 export default class HTML5WorkoutRepository {
   constructor() {
@@ -13,35 +13,36 @@ export default class HTML5WorkoutRepository {
    * saves a workout
    *
    */
-  save(workout: Workout) {
+  save(workout: IWorkout) {
     if(workout.name == null) {
       throw new Error('name is required');
     }
 
-    data = workout.toJson();
+    let data = workout.toJson();
 
     window.localStorage.setItem(workout.id, data);
 
+    return data;
   }
 
   /**
    * delete a workout
    */
-  delete(workout: Workout) {
+  delete(workout: IWorkout) {
 
   }
 
   /**
    * save an exercise for a workout
    */
-  addExercise(exercise: Exercise, workout_id: string) {
+  addExercise(exercise: IExercise, workout_id: string) {
 
   }
 
   /**
    * delete a timer in a workout
    */
-  deleteExercise(exercise: Exercise, workout_id: string) {
+  deleteExercise(exercise: IExercise, workout_id: string) {
 
   }
 
@@ -52,7 +53,7 @@ export default class HTML5WorkoutRepository {
 
   }
 
-  list(): Workout[] {
-
+  list(): IWorkout[] {
+    return [];
   }
 }

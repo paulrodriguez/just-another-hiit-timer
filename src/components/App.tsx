@@ -17,6 +17,8 @@ import { CountdownTimer } from 'countdown-timer';
 
 import { Provider } from 'react-redux'
 
+import store from '../store';
+
 const testItems = [{id:1, name:"Workout 1"},{id:2, name:"Workout 2"}];
 
 export const App = () => (

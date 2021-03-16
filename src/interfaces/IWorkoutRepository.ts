@@ -1,7 +1,7 @@
-import {IWorkout} from './IWorkout';
-import {IExercise} from './IExercise';
+import IWorkout from './IWorkout';
+import IExercise from './IExercise';
 
-export interface IWorkoutRepository {
+export default interface IWorkoutRepository {
   save: (workout: IWorkout) => void,
   delete:(workout: IWorkout) => void,
   deleteById: (id: number) => void,
