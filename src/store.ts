@@ -1,5 +1,7 @@
 import { createStore } from 'redux'
 import WorkoutRepositoryFactory from './repositories/WorkoutRepositoryFactory';
-import {reducers} from './reducers';
+import reducers from './reducers';
 
-export default createStore(reducers);
+const store = createStore(reducers);
+
+export default store;

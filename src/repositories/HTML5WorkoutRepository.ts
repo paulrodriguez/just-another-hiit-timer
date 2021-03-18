@@ -18,9 +18,23 @@ export default class HTML5WorkoutRepository {
       throw new Error('name is required');
     }
 
-    let data = workout.toJson();
+    let data = workout.toJSON();
 
     window.localStorage.setItem(workout.id, data);
+
+    let workout_ids_json = window.localStorage.getItem('workout_ids_sorted');
+
+    let workout_ids = JSON.parse(workout_ids_json);
+
+    let id_index = workout_ids.indexOf(workout.id);
+
+    if (id_index == -1) {
+      workout_ids.push(workout.id)
+    }
+
+    workout_ids_json = JSON.stringify(workout_ids);
+
+    window.localStorage.setItem('workout_ids_sorted', $workout_ids_json);
 
     return data;
   }

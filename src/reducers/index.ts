@@ -4,4 +4,4 @@ import exercise from './exercise';
 
 const reducers = combineReducers({exercise});
 
-export reducers;
+export default reducers;
