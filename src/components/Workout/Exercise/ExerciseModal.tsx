@@ -20,13 +20,13 @@ export class ExerciseModal extends React.Component<any,any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      name:this.props.name || '',
-      warmup_minutes:this.props.warmup_minutes || 0,
-      warmup_seconds: this.props.warmup_seconds || 0,
-      work_minutes: 0,
-      work_seconds: 0,
-      cooldown_minutes: 0,
-      cooldown_seconds: 0
+      name: this.props.exercise.name || '',
+      warmup_minutes:this.props.exercise.warmup_minutes || 0,
+      warmup_seconds: this.props.exercise.warmup_seconds || 0,
+      work_minutes: this.props.exercise.work_minutes || 0,
+      work_seconds: this.props.exercise.work_seconds || 0,
+      cooldown_minutes: this.props.exercise.cooldown.minutes || 0,
+      cooldown_seconds: this.props.exercise.cooldown.minutes || 0
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,7 +34,23 @@ export class ExerciseModal extends React.Component<any,any> {
   }
 
   saveExercise() {
-    // TODO: save exercise here
+    let data = {
+      name: this.state.name,
+      warmup: {
+        minutes: this.state.warmup_minutes,
+        seconds: this.state.warmup_seconds
+      },
+      work: {
+        minutes: this.state.work_minutes,
+        seconds: this.state.work_seconds
+      },
+      cooldown: {
+        minutes: this.state.cooldown_minutes,
+        seconds: this.state.cooldown_seconds
+      }
+    };
+
+    this.props.saveExercise(data);
   }
 
   handleChange(event: any) {

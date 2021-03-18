@@ -17,13 +17,36 @@ export class WorkoutEdit extends React.Component<any, any> {
       exercises: [],
       title: 'Create a new Workout',
       is_new: true,
-      modalIsOpen: false
+      modalIsOpen: false,
+      // specifies the exercise being edited
+      exerciseEdit: {
+        id: null,
+        name: '',
+        warmup: {
+          minutes: 0,
+          seconds: 0
+        },
+        work: {
+          minutes:0,
+          seconds: 0
+        },
+        cooldown: {
+          minutes: 0,
+          seconds: 0
+        }
+      }
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
+    this.getExercises = this.getExercises.bind(this);
+    this.saveExercise = this.saveExercise.bind(this);
+  }
 
+  saveExercise(exercise: any) {
+    console.log(exercise);
+    // add exercise to state if editing and then push, or have ir reload
   }
 
   handleChange(event: any) {
@@ -59,6 +82,14 @@ export class WorkoutEdit extends React.Component<any, any> {
     this.setState({modalIsOpen: true});
   }
 
+  editExercise() {
+    // sets the exercise to be edited here
+  }
+
+  getExercises() {
+    return (<div></div>);
+
+  }
   render() {
     return (
       <Container>
@@ -76,8 +107,9 @@ export class WorkoutEdit extends React.Component<any, any> {
           <Col><Button onClick={this.openModal} variant="primary">+ Add</Button></Col>
         </Row>
         <div id="exercises">
+        {this.getExercises()}
         </div>
-      <ExerciseModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} />
+      <ExerciseModal saveExercise={this.saveExercise} modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} exercise={this.state.exerciseEdit} />
       </Container>
     );
   }
