@@ -42,6 +42,8 @@ export class WorkoutEdit extends React.Component<any, any> {
     this.openModal = this.openModal.bind(this);
     this.getExercises = this.getExercises.bind(this);
     this.saveExercise = this.saveExercise.bind(this);
+    this.saveWorkout = this.saveWorkout.bind(this);
+    this.renderSaveWorkoutButton = this.renderSaveWorkoutButton.bind(this);
   }
 
   saveExercise(exercise: any) {
@@ -63,6 +65,7 @@ export class WorkoutEdit extends React.Component<any, any> {
   componentDidMount() {
     if('match' in this.props) {
       if('path' in this.props.match && this.props.match.path == '/workout/new') {
+        this.setState({is_new: true});
         // TODO: create new workout here
       }
       if('params' in this.props.match) {
@@ -90,18 +93,38 @@ export class WorkoutEdit extends React.Component<any, any> {
     return (<div></div>);
 
   }
+
+  saveWorkout() {
+    console.log(this.state);
+  }
+
+  /**
+   * get save workout button if its a new workout
+   */
+  renderSaveWorkoutButton() {
+    //if(this.state.is_new) {
+    return (<Button variant="success" onClick={this.saveWorkout}>Save</Button>);
+
+    //}
+  }
+
   render() {
     return (
       <Container>
       <Row>
       <h1 className={'text-center'}>{this.state.title}</h1>
       </Row>
+      <Row>
+        <Col xs={12} md={6}>
         <InputGroup size="sm" className="mb-3">
           <InputGroup.Prepend>
             <InputGroup.Text id="inputGroup-sizing-sm">Name</InputGroup.Text>
           </InputGroup.Prepend>
           <FormControl aria-label="Small" name="name" placeholder="Workout Name" value={this.state.name} onChange={this.handleChange} aria-describedby="inputGroup-sizing-sm" />
         </InputGroup>
+        </Col>
+        <Col xs={6}>{this.renderSaveWorkoutButton()}</Col>
+        </Row>
         <Row>
           <Col><h2>Exercises</h2></Col>
           <Col><Button onClick={this.openModal} variant="primary">+ Add</Button></Col>
