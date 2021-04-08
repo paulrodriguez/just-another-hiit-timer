@@ -2,7 +2,13 @@ import * as React from 'react';
 
 import { connect } from 'react-redux'
 
+import { nanoid } from 'nanoid'
+
 import {ExerciseModal} from './Exercise/ExerciseModal';
+
+import {addWorkout} from '../../actoins/workout';
+
+import { connect } from "react-redux";
 
 import {Button, Row, Col, Container, InputGroup, FormControl} from 'react-bootstrap';
 
@@ -12,6 +18,7 @@ export class WorkoutEdit extends React.Component<any, any> {
     super(props)
 
     this.state = {
+      id: '',
       name: '',
       sort_order: 0,
       exercises: [],
@@ -66,8 +73,9 @@ export class WorkoutEdit extends React.Component<any, any> {
     if('match' in this.props) {
       if('path' in this.props.match && this.props.match.path == '/workout/new') {
         this.setState({is_new: true});
-        // TODO: create new workout here
+        this.setState({id:nanoid()});
       }
+
       if('params' in this.props.match) {
         if('id' in this.props.match.params) {
           // TODO: fetch workout here
@@ -96,16 +104,22 @@ export class WorkoutEdit extends React.Component<any, any> {
 
   saveWorkout() {
     console.log(this.state);
+
+    let data = {
+      id: this.state.id,
+      name: this.state.name,
+      sort_order: this.state.sort_order
+    };
+
+    this.props.addWorkout(data);
+    
   }
 
   /**
    * get save workout button if its a new workout
    */
   renderSaveWorkoutButton() {
-    //if(this.state.is_new) {
     return (<Button variant="success" onClick={this.saveWorkout}>Save</Button>);
-
-    //}
   }
 
   render() {
@@ -137,3 +151,5 @@ export class WorkoutEdit extends React.Component<any, any> {
     );
   }
 }
+
+export default connect({}, { addWorkout })(WorkoutEdit);

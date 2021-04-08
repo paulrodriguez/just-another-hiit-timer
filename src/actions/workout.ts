@@ -1,7 +1,13 @@
 import WorkoutRepositoryFactory from '../repositories/WorkoutRepositoryFactory';
-
+import {ADD_WORKOUT} from './types';
 let repository = WorkoutRepositoryFactory.create('local');
 
-export const addWorkout = (workout) =< {
-  repository.save(workout);
+export const addWorkout = (content: any) => {
+  ({
+      type: ADD_WORKOUT,
+      payload: {
+        id:
+        content
+      }
+  }}
 }
