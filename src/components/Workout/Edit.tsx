@@ -6,12 +6,11 @@ import { nanoid } from 'nanoid'
 
 import {ExerciseModal} from './Exercise/ExerciseModal';
 
-import {addWorkout} from '../../actoins/workout';
+import {addWorkout} from '../../actions/workout';
 
 import { connect } from "react-redux";
 
 import {Button, Row, Col, Container, InputGroup, FormControl} from 'react-bootstrap';
-
 
 export class WorkoutEdit extends React.Component<any, any> {
   constructor(props: any) {
@@ -104,6 +103,7 @@ export class WorkoutEdit extends React.Component<any, any> {
 
   saveWorkout() {
     console.log(this.state);
+    console.log(this.props);
 
     let data = {
       id: this.state.id,
@@ -112,7 +112,7 @@ export class WorkoutEdit extends React.Component<any, any> {
     };
 
     this.props.addWorkout(data);
-    
+
   }
 
   /**
@@ -152,4 +152,4 @@ export class WorkoutEdit extends React.Component<any, any> {
   }
 }
 
-export default connect({}, { addWorkout })(WorkoutEdit);
+export default connect(null, { addWorkout })(WorkoutEdit);

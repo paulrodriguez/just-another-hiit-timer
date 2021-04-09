@@ -6,10 +6,7 @@ import {ADD_EXERCISE, DELETE_EXERCISE} from './types';
 
 export const addExercise = (content: any) => ({
     type: ADD_EXERCISE,
-    payload: {
-      id:
-      content
-    }
+    payload: content
 }}
 
 export const deleteExercise = () {

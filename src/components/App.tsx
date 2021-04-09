@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import {WorkoutList} from './Workout/List';
-import {WorkoutEdit} from './Workout/Edit';
+import WorkoutEdit from './Workout/Edit';
 import { Header } from './Header';
 
 import { Guide } from './Guide';
