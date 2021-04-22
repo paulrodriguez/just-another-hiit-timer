@@ -6,9 +6,9 @@ import { nanoid } from 'nanoid'
 
 import {ExerciseModal} from './Exercise/ExerciseModal';
 
-import {addWorkout} from '../../actions/workout';
+import {saveWorkout} from '../../actions/workout';
 
-import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 import {Button, Row, Col, Container, InputGroup, FormControl} from 'react-bootstrap';
 
@@ -111,7 +111,7 @@ export class WorkoutEdit extends React.Component<any, any> {
       sort_order: this.state.sort_order
     };
 
-    this.props.addWorkout(data);
+    this.props.actions.saveWorkout(data);
 
   }
 
@@ -134,7 +134,11 @@ export class WorkoutEdit extends React.Component<any, any> {
           <InputGroup.Prepend>
             <InputGroup.Text id="inputGroup-sizing-sm">Name</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl aria-label="Small" name="name" placeholder="Workout Name" value={this.state.name} onChange={this.handleChange} aria-describedby="inputGroup-sizing-sm" />
+          <FormControl aria-label="Small"
+          name="name"
+            placeholder="Workout Name" value={this.state.name}
+            onChange={this.handleChange}
+            aria-describedby="inputGroup-sizing-sm" />
         </InputGroup>
         </Col>
         <Col xs={6}>{this.renderSaveWorkoutButton()}</Col>
@@ -146,10 +150,19 @@ export class WorkoutEdit extends React.Component<any, any> {
         <div id="exercises">
         {this.getExercises()}
         </div>
-      <ExerciseModal saveExercise={this.saveExercise} modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} exercise={this.state.exerciseEdit} />
+      <ExerciseModal saveExercise={this.saveExercise}
+        modalIsOpen={this.state.modalIsOpen}
+        closeModal={this.closeModal}
+        exercise={this.state.exerciseEdit} />
       </Container>
     );
   }
 }
 
-export default connect(null, { addWorkout })(WorkoutEdit);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({saveWorkout}, dispatch)
+  };
+}
+
+export default connect(null, mapDispatchToProps)(WorkoutEdit);
