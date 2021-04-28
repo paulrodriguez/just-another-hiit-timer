@@ -10,6 +10,8 @@ import {saveWorkout} from '../../actions/workout';
 
 import { bindActionCreators } from "redux";
 
+import { Workout } from '../../models/Workout';
+
 import {Button, Row, Col, Container, InputGroup, FormControl} from 'react-bootstrap';
 
 export class WorkoutEdit extends React.Component<any, any> {
@@ -111,7 +113,9 @@ export class WorkoutEdit extends React.Component<any, any> {
       sort_order: this.state.sort_order
     };
 
-    this.props.actions.saveWorkout(data);
+    let workout = new Workout(this.state.id, this.state.name, this.state.sort_order);
+
+    this.props.actions.saveWorkout(workout);
 
   }
 
@@ -159,7 +163,7 @@ export class WorkoutEdit extends React.Component<any, any> {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: any) {
   return {
     actions: bindActionCreators({saveWorkout}, dispatch)
   };

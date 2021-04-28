@@ -24,7 +24,12 @@ export default class HTML5WorkoutRepository {
 
     let workout_ids_json = window.localStorage.getItem('workout_ids_sorted');
 
-    let workout_ids = JSON.parse(workout_ids_json);
+    let workout_ids = [];
+    if(workout_ids_json != null) {
+       workout_ids = JSON.parse(workout_ids_json);
+    }
+    console.log(workout_ids_json);
+    console.log(workout_ids);
 
     let id_index = workout_ids.indexOf(workout.id);
 
@@ -34,9 +39,11 @@ export default class HTML5WorkoutRepository {
 
     workout_ids_json = JSON.stringify(workout_ids);
 
-    window.localStorage.setItem('workout_ids_sorted', $workout_ids_json);
+    window.localStorage.setItem('workout_ids_sorted', workout_ids_json);
 
-    return data;
+    return new Promise((resolve)=>{
+      resolve(data);
+    });
   }
 
   /**
