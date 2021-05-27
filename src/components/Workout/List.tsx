@@ -25,6 +25,12 @@ export class WorkoutList extends React.Component<any, any> {
         <Col><NavLink to="/workout/new"><Button variant="primary">Add</Button></NavLink></Col>
       </Row>
       <div id="workouts">
+      <Row>
+      <Col>ID</Col>
+      <Col>Name</Col>
+      <Col>Actions</Col>
+      </Row>
+      {workoutItems}
       </div>
       </Container>
     )

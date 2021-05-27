@@ -13,7 +13,7 @@ export class Workout implements IWorkout {
     this.sort_order = sort_order;
   }
 
-  toJSON() {
+  toJSON(): string {
     let data = {
       id: this.id,
       name: this.name,

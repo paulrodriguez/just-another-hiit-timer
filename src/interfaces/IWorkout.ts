@@ -5,5 +5,7 @@ export default interface IWorkout {
   name: string,
   sort_order: number,
   exercises?: IExercise[],
+  addExercise(exercise: IExercise): void,
+  removeExercise(id: string): void,
   toJSON(): string
 };

@@ -2,6 +2,8 @@ import IWorkout from '../interfaces/IWorkout';
 import IExercise from '../interfaces/IExercise';
 import IWorkoutRepository from '../interfaces/IWorkoutRepository';
 
+import {WorkoutFactory} from '../factories/WorkoutFactory';
+
 export default class HTML5WorkoutRepository {
   constructor() {
     if(!window.localStorage) {
@@ -74,7 +76,25 @@ export default class HTML5WorkoutRepository {
 
   }
 
+  /**
+   *
+   */
   list(): IWorkout[] {
-    return [];
+    let workout_list = [];
+    let workout_factory = new WorkoutFactory();
+    let workout_ids_json = window.localStorage.getItem('workout_ids_sorted');
+
+    let workout_ids = [];
+    if (workout_ids_json != null) {
+       workout_ids = JSON.parse(workout_ids_json);
+    }
+
+    for (let workout_id in workout_ids) {
+
+      let workout_json = window.localStorage.getItem(workout_ids[0]);
+      workout_list.push(workout_factory.create(workout_json));
+    }
+
+    return workout_list;
   }
 }

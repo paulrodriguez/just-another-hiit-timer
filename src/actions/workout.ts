@@ -8,6 +8,10 @@ export const saveWorkoutSuccess = (content: any) => ({
   payload: content
 });
 
+export const getWorkouts = () => {
+  console.log(repository.list());
+}
+
 export const saveWorkout = (workout: any) => {
   console.log(workout);
   return function(dispatch: any) {
