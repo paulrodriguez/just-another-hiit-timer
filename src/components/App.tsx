@@ -20,8 +20,10 @@ import { Provider } from 'react-redux'
 import {getWorkouts} from '../actions/workout';
 
 import store from '../store';
-getWorkouts()
-const testItems = [{id:1, name:"Workout 1"},{id:2, name:"Workout 2"}];
+
+store.dispatch(getWorkouts());
+
+//const testItems = [{id:1, name:"Workout 1"},{id:2, name:"Workout 2"}];
 
 export const App = () => (
   <>
@@ -30,7 +32,7 @@ export const App = () => (
     <Header />
     <Switch>
       <Route exact path="/">
-      <WorkoutList items={testItems} />
+      <WorkoutList />
       </Route>
       <Route path="/user-guide" component={Guide} />
       <Route path="/workout/new" render={props=>(<WorkoutEdit {...props} />)} />

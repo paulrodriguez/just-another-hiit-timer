@@ -8,6 +8,7 @@ export class Workout implements IWorkout {
   exercises: IExercise[] = [];
 
   constructor(id: string, name: string, sort_order: number=0) {
+    console.info('inside constructor',id, name, sort_order);
     this.id         = id;
     this.name       = name;
     this.sort_order = sort_order;

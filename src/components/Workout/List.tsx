@@ -8,16 +8,23 @@ import {
     Route,
     Switch} from 'react-router-dom';
 
+import {IWorkout} from '../../interfaces/IWorkout';
+
 import { Provider } from 'react-redux';
 
 export class WorkoutList extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
   }
+
   render() {
-    const workoutItems = this.props.items.map((item: any) =>
-    <WorkoutListItem item={item} key={item.id} />
-  );
+    let workoutItems = null;
+    if(this.props.items) {
+      workoutItems = this.props.items.map((item: IWorkout) =>
+        <WorkoutListItem item={item} key={item.id} />
+      );
+    }
+
     return (
       <Container>
       <Row>

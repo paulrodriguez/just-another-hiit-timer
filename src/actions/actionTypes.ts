@@ -1,3 +1,4 @@
 export const ADD_EXERCISE = 'ADD_EXERCISE';
 export const DELETE_EXERCISE = 'DELETE_EXERCISE';
 export const SAVE_WORKOUT = 'SAVE_WORKOUT';
+export const LOAD_WORKOUTS = 'LOAD_WORKOUTS';

@@ -1,5 +1,5 @@
 import WorkoutRepositoryFactory from '../repositories/WorkoutRepositoryFactory';
-import {SAVE_WORKOUT} from './actionTypes';
+import {SAVE_WORKOUT, LOAD_WORKOUTS} from './actionTypes';
 
 let repository = WorkoutRepositoryFactory.create('local');
 
@@ -8,8 +8,17 @@ export const saveWorkoutSuccess = (content: any) => ({
   payload: content
 });
 
+export const loadWorkoutsSuccess = (content: any)=>({
+  type: LOAD_WORKOUTS,
+  payload: content
+});
+
 export const getWorkouts = () => {
-  console.log(repository.list());
+  return function(dispatch: any) {
+    let workouts = repository.list();
+    dispatch(loadWorkoutsSuccess(workouts));
+  };
+
 }
 
 export const saveWorkout = (workout: any) => {
