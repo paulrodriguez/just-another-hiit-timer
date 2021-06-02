@@ -10,17 +10,17 @@ import {
 
 import {IWorkout} from '../../interfaces/IWorkout';
 
-import { Provider } from 'react-redux';
+import { connect} from 'react-redux';
 
 export class WorkoutList extends React.Component<any, any> {
   constructor(props: any) {
-    super(props)
+    super(props);
   }
 
   render() {
     let workoutItems = null;
-    if(this.props.items) {
-      workoutItems = this.props.items.map((item: IWorkout) =>
+    if(this.props.workouts) {
+      workoutItems = this.props.workouts.map((item: IWorkout) =>
         <WorkoutListItem item={item} key={item.id} />
       );
     }
@@ -43,3 +43,9 @@ export class WorkoutList extends React.Component<any, any> {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {workouts: state.workout.workouts};
+};
+
+export default connect(mapStateToProps)(WorkoutList);

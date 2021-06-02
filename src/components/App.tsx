@@ -8,7 +8,7 @@ import {
   NavLink
 } from "react-router-dom";
 
-import {WorkoutList} from './Workout/List';
+import WorkoutList from './Workout/List';
 import WorkoutEdit from './Workout/Edit';
 import { Header } from './Header';
 

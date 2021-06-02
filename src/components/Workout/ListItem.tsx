@@ -12,6 +12,10 @@ export class WorkoutListItem extends React.Component<any, any> {
   play() {
     console.log('playing workout');
   }
+
+  delete() {
+    
+  }
   render() {
     return (
       <Row>

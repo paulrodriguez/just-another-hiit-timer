@@ -96,6 +96,8 @@ export default class HTML5WorkoutRepository {
       workout_list.push(WorkoutFactory.create(workout_json));
     }
 
+    workout_list.sort((a, b) => (a.sort_order > b.sort_order) ? 1 : 1);
+
     return workout_list;
   }
 }
