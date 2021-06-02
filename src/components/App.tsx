@@ -36,6 +36,7 @@ export const App = () => (
       </Route>
       <Route path="/user-guide" component={Guide} />
       <Route path="/workout/new" render={props=>(<WorkoutEdit {...props} />)} />
+      <Route path="/workout/edit/:id" render={props=>(<WorkoutEdit {...props} />)} />
     </Switch>
     </HashRouter>
   </Provider>
