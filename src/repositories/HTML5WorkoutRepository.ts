@@ -76,6 +76,19 @@ export default class HTML5WorkoutRepository {
 
   }
 
+  get(id: string) {
+    let workout_json = JSON.parse(window.localStorage.getItem(id));
+
+    let workout = null;
+    if(workout_json) {
+      workout = WorkoutFactory.create(workout_json);
+    }
+
+    return new Promise((resolve)=>{
+      resolve(workout);
+    });
+  }
+
   /**
    *
    */
@@ -88,10 +101,8 @@ export default class HTML5WorkoutRepository {
     if (workout_ids_json != null) {
        workout_ids = JSON.parse(workout_ids_json);
     }
-
-    for (let workout_id in workout_ids) {
-
-      let workout_json = JSON.parse(window.localStorage.getItem(workout_ids[0]));
+    for (let index in workout_ids) {
+      let workout_json = JSON.parse(window.localStorage.getItem(workout_ids[index]));
 
       workout_list.push(WorkoutFactory.create(workout_json));
     }

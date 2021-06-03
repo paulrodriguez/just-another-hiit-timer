@@ -14,6 +14,8 @@ import { Workout } from '../../models/Workout';
 
 import {Button, Row, Col, Container, InputGroup, FormControl} from 'react-bootstrap';
 
+import { getWorkout } from '../../actions/workout';
+
 export class WorkoutEdit extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
@@ -71,6 +73,7 @@ export class WorkoutEdit extends React.Component<any, any> {
   }
 
   componentDidMount() {
+    console.log(this.props);
     if('match' in this.props) {
       if('path' in this.props.match && this.props.match.path == '/workout/new') {
         this.setState({is_new: true});
@@ -80,6 +83,8 @@ export class WorkoutEdit extends React.Component<any, any> {
       if('params' in this.props.match) {
         if('id' in this.props.match.params) {
           // TODO: fetch workout here
+          let promise = getWorkout(this.props.match.params.id);
+          promise.then()
           this.setState({is_new: false});
         }
       }

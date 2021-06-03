@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {Button, Row, Col} from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 export class WorkoutListItem extends React.Component<any, any> {
   constructor(props: any) {
@@ -22,8 +23,11 @@ export class WorkoutListItem extends React.Component<any, any> {
    * delete workout after confirmation
    */
   delete() {
-
+    if(confirm('Are you sure?')) {
+      // TODO: Delete workout here
+    }
   }
+
   render() {
     return (
       <Row>
@@ -32,7 +36,7 @@ export class WorkoutListItem extends React.Component<any, any> {
         <Col>
           <Button variant="primary" onClick={this.play}>Play</Button>
           <Button variant="primary" onClick={this.delete}>Delete</Button>
-          <NavLink to="/workout/edit/{this.props.item.id}"><Button variant="primary">Edit</Button></NavLink>
+          <NavLink to={'/workout/edit/' + this.props.item.id }><Button variant="primary">Edit</Button></NavLink>
         </Col>
       </Row>
     )

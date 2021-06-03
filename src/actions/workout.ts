@@ -30,3 +30,7 @@ export const saveWorkout = (workout: any) => {
     });
   }
 };
+
+export const getWorkout = (id: string) => {
+  return repository.get(id);
+}
