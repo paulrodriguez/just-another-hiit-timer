@@ -73,18 +73,27 @@ export class WorkoutEdit extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    var $self = this;
+
     if('match' in this.props) {
       if('path' in this.props.match && this.props.match.path == '/workout/new') {
         this.setState({is_new: true});
-        this.setState({id:nanoid()});
+        this.setState({id: nanoid()});
       }
 
       if('params' in this.props.match) {
         if('id' in this.props.match.params) {
           // TODO: fetch workout here
-          let promise = getWorkout(this.props.match.params.id);
-          promise.then()
+          getWorkout(this.props.match.params.id).then((result)=>{
+            console.log(result);
+            result.toJSON();
+          });
+
+          // promise.then((workout)=>{
+          //   console.log(workout);
+          //   let data = workout.toJSON();
+          //   $self.setState({...data});
+          // });
           this.setState({is_new: false});
         }
       }

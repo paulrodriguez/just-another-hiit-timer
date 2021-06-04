@@ -23,4 +23,16 @@ export class Workout implements IWorkout {
 
     return JSON.stringify(data);
   }
+
+  addExercise(exercise: IExercise): void {
+    this.exercises.push(exercise);
+
+    return this;
+  }
+
+  removeExercise(id: string): void {
+    this.exercises = this.exercises.filter(exercise => exercise.id != id);
+
+    return this;
+  }
 }

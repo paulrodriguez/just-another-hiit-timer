@@ -31,6 +31,7 @@ export const saveWorkout = (workout: any) => {
   }
 };
 
-export const getWorkout = (id: string) => {
-  return repository.get(id);
+export const getWorkout = async (id: string) => {
+  let result = await repository.get(id);
+  return result;
 }
