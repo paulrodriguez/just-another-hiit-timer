@@ -22,7 +22,6 @@ export const getWorkouts = () => {
 }
 
 export const saveWorkout = (workout: any) => {
-  console.log(workout);
   return function(dispatch: any) {
     let promise = repository.save(workout);
     promise.then(responseWorkout=>{

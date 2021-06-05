@@ -11,6 +11,7 @@ import {saveWorkout} from '../../actions/workout';
 import { bindActionCreators } from "redux";
 
 import { Workout } from '../../models/Workout';
+import IWorkout from '../../interfaces/IWorkout';
 
 import {Button, Row, Col, Container, InputGroup, FormControl} from 'react-bootstrap';
 
@@ -84,16 +85,17 @@ export class WorkoutEdit extends React.Component<any, any> {
       if('params' in this.props.match) {
         if('id' in this.props.match.params) {
           // TODO: fetch workout here
-          getWorkout(this.props.match.params.id).then((result)=>{
-            console.log(result);
-            result.toJSON();
-          });
+          let id = this.props.match.params.id
+          let workout = this.props.workouts.find((el: IWorkout) => el.id=id);
 
-          // promise.then((workout)=>{
-          //   console.log(workout);
-          //   let data = workout.toJSON();
-          //   $self.setState({...data});
-          // });
+
+          this.setState({
+            id: workout.id,
+            name: workout.name,
+            exercises: workout.exercises,
+            sort_order: workout.sort_order
+          });
+          
           this.setState({is_new: false});
         }
       }
@@ -144,6 +146,7 @@ export class WorkoutEdit extends React.Component<any, any> {
     return (
       <Container>
       <Row>
+      {this.state.id}
       <h1 className={'text-center'}>{this.state.title}</h1>
       </Row>
       <Row>
@@ -183,4 +186,8 @@ function mapDispatchToProps(dispatch: any) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(WorkoutEdit);
+const mapStateToProps = (state: any) => {
+  return {workouts: state.workout.workouts};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorkoutEdit);
