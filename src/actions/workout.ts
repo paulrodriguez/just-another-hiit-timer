@@ -13,14 +13,25 @@ export const loadWorkoutsSuccess = (content: any)=>({
   payload: content
 });
 
+/**
+ * get workouts from repository and save to state.
+ */
 export const getWorkouts = () => {
   return function(dispatch: any) {
-    let workouts = repository.list();
-    dispatch(loadWorkoutsSuccess(workouts));
+    let promise = repository.list();
+
+    promise.then((result)=>{
+      dispatch(loadWorkoutsSuccess(result));
+    });
   };
 
 }
 
+/**
+ * save workout to repository, then add to store
+ *
+ * @param {any} workout
+ */
 export const saveWorkout = (workout: any) => {
   return function(dispatch: any) {
     let promise = repository.save(workout);

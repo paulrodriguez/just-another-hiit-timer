@@ -4,8 +4,14 @@ import IWorkoutRepository from '../interfaces/IWorkoutRepository';
 
 import {WorkoutFactory} from '../factories/WorkoutFactory';
 
+import {JsonWorkoutBuilder} from '../builders/JsonWorkoutBuilder';
+
 export default class HTML5WorkoutRepository {
+  private workoutBuilder: JsonWorkoutBuilder;
+
   constructor() {
+    this.workoutBuilder = new JsonWorkoutBuilder();
+
     if(!window.localStorage) {
       throw new Error('local storage is not defined for your browser');
     }
@@ -15,9 +21,9 @@ export default class HTML5WorkoutRepository {
    * saves a workout
    *
    * @param {IWorkout} workout
-   * @returns {Promise}
+   * @returns {Promise<T>}
    */
-  save(workout: IWorkout) {
+  save(workout: IWorkout): Promise<T> {
     if(workout.name == null) {
       throw new Error('name is required');
     }
@@ -76,7 +82,7 @@ export default class HTML5WorkoutRepository {
 
   }
 
-  get(id: string) {
+  get(id: string): Promise<T> {
     let workout_json = JSON.parse(window.localStorage.getItem(id));
 
     let workout = null;
@@ -90,9 +96,11 @@ export default class HTML5WorkoutRepository {
   }
 
   /**
+   * get list of workouts
    *
+   * @returns {Promise<T>}
    */
-  list(): IWorkout[] {
+  list(): Promise<T> {
     let workout_list = [];
 
     let workout_ids_json = window.localStorage.getItem('workout_ids_sorted');
@@ -104,11 +112,13 @@ export default class HTML5WorkoutRepository {
     for (let index in workout_ids) {
       let workout_json = JSON.parse(window.localStorage.getItem(workout_ids[index]));
 
-      workout_list.push(WorkoutFactory.create(workout_json));
+      workout_list.push(this.workoutBuilder.withData(workout_json).build());
     }
 
     workout_list.sort((a, b) => (a.sort_order > b.sort_order) ? 1 : 1);
 
-    return workout_list;
+    return new Promise((resolve)=> {
+      resolve(workout_list);
+    });
   }
 }
