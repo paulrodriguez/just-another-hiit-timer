@@ -8,6 +8,8 @@ import {ExerciseModal} from './Exercise/ExerciseModal';
 
 import {saveWorkout} from '../../actions/workout';
 
+import {saveExercise} from '../../actions/exercise';
+
 import { bindActionCreators } from "redux";
 
 import { Workout } from '../../models/Workout';
@@ -93,9 +95,10 @@ export class WorkoutEdit extends React.Component<any, any> {
             id: workout.id,
             name: workout.name,
             exercises: workout.exercises,
-            sort_order: workout.sort_order
+            sort_order: workout.sort_order,
+            title: 'Edit Workout - ' + workout.id
           });
-          
+
           this.setState({is_new: false});
         }
       }
@@ -182,7 +185,7 @@ export class WorkoutEdit extends React.Component<any, any> {
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    actions: bindActionCreators({saveWorkout}, dispatch)
+    actions: bindActionCreators({saveWorkout, }, dispatch)
   };
 }
 
