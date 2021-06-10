@@ -1,5 +1,4 @@
-import  IExercise from '../interfaces/IExercise';
-import ITime from '../interfaces/ITime';
+import {IExercise, ITime, Jsonable} from '../interfaces';
 
 export class Exercise implements IExercise {
   id: string;

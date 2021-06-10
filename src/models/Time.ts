@@ -1,4 +1,5 @@
 import ITime from '../interfaces/ITime';
+import Jsonable from '../interfaces/Jsonable';
 
 export class Time implements ITime {
   minutes: number;
@@ -6,13 +7,13 @@ export class Time implements ITime {
 
   constructor(minutes: number, seconds: number) {
     this.minutes = minutes;
-    this.number = number;
+    this.seconds = seconds;
   }
 
   toJSON() {
     let data = {
-      minutes: minutes,
-      seconds: seconds;
+      minutes: this.minutes,
+      seconds: this.seconds
     }
 
     return JSON.stringify(data);

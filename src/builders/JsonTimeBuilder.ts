@@ -15,6 +15,10 @@ export class JsonTimeBuilder {
   private minutes: number
   private seconds: number
 
+  constructor() {
+    this.minutes = 0;
+    this.seconds = 0;
+  }
   /**
    * sets object data
    *
@@ -24,8 +28,25 @@ export class JsonTimeBuilder {
   withData(data: any) {
     this.data = data;
 
-    this.minutes = this.data.minutes;
-    this.seconds = this.data.seconds;
+    if ('minutes' in data) {
+      this.withMinutes(data.minutes);
+    }
+
+    if ('seconds' in data) {
+      this.withSeconds(data.seconds);
+    }
+
+    return this;
+  }
+
+  withMinutes(minutes: number) {
+    this.minutes = minutes;
+
+    return this;
+  }
+
+  withSeconds(seconds: number) {
+    this.seconds = seconds;
 
     return this;
   }

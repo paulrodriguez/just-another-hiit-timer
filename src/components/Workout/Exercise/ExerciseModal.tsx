@@ -36,6 +36,7 @@ export class ExerciseModal extends React.Component<any,any> {
   saveExercise() {
     let data = {
       name: this.state.name,
+      workout_id: '',
       warmup: {
         minutes: this.state.warmup_minutes,
         seconds: this.state.warmup_seconds

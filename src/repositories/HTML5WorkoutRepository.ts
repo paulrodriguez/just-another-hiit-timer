@@ -4,7 +4,7 @@ import IWorkoutRepository from '../interfaces/IWorkoutRepository';
 
 import {WorkoutFactory} from '../factories/WorkoutFactory';
 
-import {JsonWorkoutBuilder} from '../builders/JsonWorkoutBuilder';
+import {JsonWorkoutBuilder} from '../builders';
 
 export default class HTML5WorkoutRepository {
   private workoutBuilder: JsonWorkoutBuilder;

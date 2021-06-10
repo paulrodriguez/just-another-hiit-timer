@@ -1,12 +1,18 @@
-import ITime from './ITime';
+import ITime, {TimeData} from './ITime';
+import Jsonable from './Jsonable';
 
-export default interface IExercise {
-  id: string,
-  warmup: ITime,
+export default interface IExercise extends Jsonable, ExerciseData {
   work: ITime,
+  warmup: ITime,
   cooldown: ITime,
-  name: string
+}
+
+export interface ExerciseData {
+  id: string,
+  work: TimeData,
+  warmup: TimeData,
+  cooldown: TimeData,
+  name: string,
   sort_order: number,
-  workout_id: string,
-  toJSON(): string
+  workout_id: string
 }

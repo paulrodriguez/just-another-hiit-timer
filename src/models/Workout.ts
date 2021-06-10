@@ -1,11 +1,10 @@
-import IWorkout from '../interfaces/IWorkout';
-import IExercise from '../interfaces/IExercise';
+import  {IWorkout, IExercise, Jsonable} from '../interfaces';
 
 export class Workout implements IWorkout {
   id: string;
   name: string;
   sort_order: number;
-  exercises: IExercise[] = [];
+  exercises: Array<IExercise> = [];
 
   constructor(id: string, name: string, sort_order: number=0) {
     this.id         = id;

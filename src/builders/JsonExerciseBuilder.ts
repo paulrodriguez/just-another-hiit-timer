@@ -37,7 +37,7 @@ export class JsonExerciseBuilder {
    */
   withData(data: any) {
     this.data = data;
-    console.log(this.data);
+  
     if('id' in this.data) {
       this.id = this.data.id;
     }

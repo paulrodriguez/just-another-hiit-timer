@@ -10,14 +10,24 @@ import {saveWorkout} from '../../actions/workout';
 
 import {saveExercise} from '../../actions/exercise';
 
+
 import { bindActionCreators } from "redux";
 
 import { Workout } from '../../models/Workout';
-import IWorkout from '../../interfaces/IWorkout';
+import {IWorkout, WorkoutData, ExerciseData} from '../../interfaces';
+import {JsonWorkoutBuilder} from '../../builders';
 
 import {Button, Row, Col, Container, InputGroup, FormControl} from 'react-bootstrap';
 
 import { getWorkout } from '../../actions/workout';
+
+interface IState extends WorkoutData {
+  title: string,
+  is_new: boolean,
+  modalIsOpen: boolean,
+  exerciseEdit: ExerciseData
+
+}
 
 export class WorkoutEdit extends React.Component<any, any> {
   constructor(props: any) {
@@ -35,6 +45,7 @@ export class WorkoutEdit extends React.Component<any, any> {
       exerciseEdit: {
         id: null,
         name: '',
+        workout_id: '',
         warmup: {
           minutes: 0,
           seconds: 0
@@ -50,6 +61,8 @@ export class WorkoutEdit extends React.Component<any, any> {
       }
     }
 
+    this.workoutBuilder = new JsonWorkoutBuilder();
+
     this.handleChange = this.handleChange.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
@@ -59,7 +72,7 @@ export class WorkoutEdit extends React.Component<any, any> {
     this.renderSaveWorkoutButton = this.renderSaveWorkoutButton.bind(this);
   }
 
-  saveExercise(exercise: any) {
+  saveExercise(exercise: ExerciseData) {
     console.log(exercise);
     // add exercise to state if editing and then push, or have ir reload
   }
@@ -123,14 +136,12 @@ export class WorkoutEdit extends React.Component<any, any> {
   }
 
   saveWorkout() {
-    console.log(this.state);
-    console.log(this.props);
-
     let data = {
       id: this.state.id,
       name: this.state.name,
       sort_order: this.state.sort_order
     };
+
 
     let workout = new Workout(this.state.id, this.state.name, this.state.sort_order);
 
