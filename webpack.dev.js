@@ -13,7 +13,7 @@ module.exports = merge(common, {
   },
   devtool: 'inline-source-map',
   devServer: {
-    //index: 'index.dev.html',
+    hot: true,
     contentBase: path.join(__dirname, 'dev'),
     compress: true,
     port: 9000,

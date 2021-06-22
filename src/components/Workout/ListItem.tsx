@@ -36,7 +36,7 @@ export class WorkoutListItem extends React.Component<any, any> {
         <Col>
           <Button variant="primary" onClick={this.play}>Play</Button>
           <Button variant="primary" onClick={this.delete}>Delete</Button>
-          <NavLink to={'/workout/edit/' + this.props.item.id }><Button variant="primary">Edit</Button></NavLink>
+          <NavLink to={'/workouts/edit/' + this.props.item.id }><Button variant="primary">Edit</Button></NavLink>
         </Col>
       </Row>
     )

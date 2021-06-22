@@ -38,6 +38,8 @@ export const saveWorkout = (workout: any) => {
     promise.then(responseWorkout=>{
         dispatch(saveWorkoutSuccess(responseWorkout));
     });
+
+    return promise;
   }
 };
 

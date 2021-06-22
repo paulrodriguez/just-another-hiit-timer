@@ -17,11 +17,14 @@ import { Workout } from '../../models/Workout';
 import {IWorkout, WorkoutData, ExerciseData} from '../../interfaces';
 import {JsonWorkoutBuilder} from '../../builders';
 
-import {Button, Row, Col, Container, InputGroup, FormControl} from 'react-bootstrap';
+import {Button, Row, Col, Container, InputGroup, FormControl, } from 'react-bootstrap';
+
+import Toast from 'react-bootstrap/Toast'
 
 import { getWorkout } from '../../actions/workout';
 
 interface IState extends WorkoutData {
+  show: boolean,
   title: string,
   is_new: boolean,
   modalIsOpen: boolean,
@@ -29,11 +32,18 @@ interface IState extends WorkoutData {
 
 }
 
-export class WorkoutEdit extends React.Component<any, any> {
+const TOAST_SHOW = true;
+const TOAST_HIDE = false;
+const TOAST_DELAY = 5000;
+
+export class WorkoutEdit extends React.Component<any, IState> {
+  workoutBuilder: JsonWorkoutBuilder;
+
   constructor(props: any) {
     super(props)
 
     this.state = {
+      show: false,
       id: '',
       name: '',
       sort_order: 0,
@@ -70,13 +80,29 @@ export class WorkoutEdit extends React.Component<any, any> {
     this.saveExercise = this.saveExercise.bind(this);
     this.saveWorkout = this.saveWorkout.bind(this);
     this.renderSaveWorkoutButton = this.renderSaveWorkoutButton.bind(this);
+    this.toastShow = this.toastShow.bind(this);
   }
 
-  saveExercise(exercise: ExerciseData) {
-    console.log(exercise);
+  /**
+   * appends exercise to list of exercises
+   *
+   * @param {ExerciseData} exercise: the exercise data to save
+   * @param {Boolean} isNew: specifies wether the exercise is new (append it).
+   * @param {Number} index: specifies the position of exercise if editing existing one.
+   */
+  saveExercise(exercise: ExerciseData, isNew: boolean=true, index: number=-1) {
     // add exercise to state if editing and then push, or have ir reload
+    if (isNew) {
+      this.setState({exercises: [...this.state.exercises, exercise]});
+    } else {
+      // TODO handle case when editing existing exercise
+    }
+    this.closeModal();
   }
 
+  /**
+   * handle change when changing an input
+   */
   handleChange(event: any) {
     const target = event.target;
 
@@ -109,7 +135,7 @@ export class WorkoutEdit extends React.Component<any, any> {
             name: workout.name,
             exercises: workout.exercises,
             sort_order: workout.sort_order,
-            title: 'Edit Workout - ' + workout.id
+            title: 'Edit Workout'
           });
 
           this.setState({is_new: false});
@@ -126,12 +152,24 @@ export class WorkoutEdit extends React.Component<any, any> {
     this.setState({modalIsOpen: true});
   }
 
-  editExercise() {
+  /**
+   * triggers modal opening to edit exercise
+   */
+  editExercise(exercise: ExerciseData) {
     // sets the exercise to be edited here
   }
 
+  /**
+   * get exercises in JSX to display
+   */
   getExercises() {
-    return (<div></div>);
+    let exercises = this.state.exercises.map(item=>{
+      return (<Row>
+        <Col>{item.name}</Col>
+        <Col>Edit</Col>
+      </Row>);
+    });
+    return exercises;
 
   }
 
@@ -142,11 +180,18 @@ export class WorkoutEdit extends React.Component<any, any> {
       sort_order: this.state.sort_order
     };
 
+    let self = this;
 
     let workout = new Workout(this.state.id, this.state.name, this.state.sort_order);
 
-    this.props.actions.saveWorkout(workout);
+    let promise = this.props.actions.saveWorkout(workout);
+    promise.then(workout=>{
+      self.toastShow(TOAST_SHOW);
+    });
+  }
 
+  toastShow(show: boolean) {
+    this.setState({show: show});
   }
 
   /**
@@ -160,10 +205,15 @@ export class WorkoutEdit extends React.Component<any, any> {
     return (
       <Container>
       <Row>
-      {this.state.id}
-      <h1 className={'text-center'}>{this.state.title}</h1>
+      <h1 className={'text-center '}>{this.state.title}</h1>
       </Row>
       <Row>
+      <Col xs={12}>
+        <Toast onClose={()=>this.toastShow(TOAST_HIDE)} show={this.state.show} delay={TOAST_DELAY} autohide>
+          <Toast.Body>Workout Saved.</Toast.Body>
+        </Toast>
+      </Col>
+      <Col xs={6} md={12}>{this.renderSaveWorkoutButton()}</Col>
         <Col xs={12} md={6}>
         <InputGroup size="sm" className="mb-3">
           <InputGroup.Prepend>
@@ -176,7 +226,6 @@ export class WorkoutEdit extends React.Component<any, any> {
             aria-describedby="inputGroup-sizing-sm" />
         </InputGroup>
         </Col>
-        <Col xs={6}>{this.renderSaveWorkoutButton()}</Col>
         </Row>
         <Row>
           <Col><h2>Exercises</h2></Col>

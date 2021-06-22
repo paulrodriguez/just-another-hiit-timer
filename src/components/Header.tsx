@@ -8,7 +8,7 @@ export const Header = (props: any) => (
   <header className={'header'}>
   <h1 className={"title"}>Just Another HIIT Timer</h1>
   <nav className={'nav'}>
-    <ul className={"menu"}>
+    <ul className={"menu margin-middle"}>
       <li className={"item"}><NavLink className={"link"} to="/user-guide">Guide</NavLink></li>
       <li className={"item"}><NavLink className={"link"} to="/">Workouts</NavLink></li>
     </ul>

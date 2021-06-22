@@ -1,4 +1,4 @@
-import IExercise, {ExerciseData} from './IExercise';
+import IExercise, ExerciseData} from './IExercise';
 import IWorkout, {WorkoutData} from './IWorkout';
 import ITime, {TimeData} from './ITime';
 import Jsonable from './Jsonable';

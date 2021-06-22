@@ -4,8 +4,8 @@ let repository = WorkoutRepositoryFactory.create('local');
 
 import {SAVE_EXERCISE, DELETE_EXERCISE} from './actionTypes';
 
-export const addExercise = (content: any) => ({
-    type: ADD_EXERCISE,
+export const saveExercise = (content: any) => ({
+    type: SAVE_EXERCISE,
     payload: content
 });
 
@@ -23,10 +23,10 @@ export const saveExercise = (content: any) => {
   }
 };
 
-export const deleteExercise = () {
+export const deleteExercise => () {
 
 }
 
-export const sortExercises = () {
+export const sortExercises => () {
 
 }

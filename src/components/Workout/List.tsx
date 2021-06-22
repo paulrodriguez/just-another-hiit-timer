@@ -2,15 +2,16 @@ import * as React from 'react';
 import { WorkoutListItem } from './ListItem';
 import {WorkoutEdit} from './Edit';
 import {Button, Row, Col, Container, InputGroup, FormControl} from 'react-bootstrap';
+
 import {
     NavLink,
-    HashRouter,
     Route,
     Switch} from 'react-router-dom';
 
-import {IWorkout} from '../../interfaces/IWorkout';
+import {IWorkout} from '../../interfaces';
 
-import { connect} from 'react-redux';
+import {connect} from 'react-redux';
+
 
 export class WorkoutList extends React.Component<any, any> {
   constructor(props: any) {
@@ -29,7 +30,8 @@ export class WorkoutList extends React.Component<any, any> {
       <Container>
       <Row>
         <Col><h2>Workouts</h2></Col>
-        <Col><NavLink to="/workout/new"><Button variant="primary">Add</Button></NavLink></Col>
+        <Col></Col>
+        <Col><NavLink to={`workouts/new`}><Button variant="primary">+ New</Button></NavLink></Col>
       </Row>
       <div id="workouts">
       <Row>
