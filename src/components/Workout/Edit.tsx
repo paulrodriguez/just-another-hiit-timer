@@ -91,9 +91,10 @@ export class WorkoutEdit extends React.Component<any, IState> {
    * @param {Number} index: specifies the position of exercise if editing existing one.
    */
   saveExercise(exercise: ExerciseData, isNew: boolean=true, index: number=-1) {
-    // add exercise to state if editing and then push, or have ir reload
+    // add exercise to state if editing and then push, or have it reload
     if (isNew) {
-      this.setState({exercises: [...this.state.exercises, exercise]});
+      // this.setState({exercises: [...this.state.exercises, exercise]});
+      this.props.actions.saveExercise({id: nanoid(), ...exercise}, this.state.id);
     } else {
       // TODO handle case when editing existing exercise
     }
@@ -245,7 +246,7 @@ export class WorkoutEdit extends React.Component<any, IState> {
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    actions: bindActionCreators({saveWorkout, }, dispatch)
+    actions: bindActionCreators({saveWorkout, saveExercise, }, dispatch)
   };
 }
 

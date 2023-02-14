@@ -3,6 +3,7 @@ import IExercise from '../interfaces/IExercise';
 import IWorkoutRepository from '../interfaces/IWorkoutRepository';
 
 import {WorkoutFactory} from '../factories/WorkoutFactory';
+import {ExerciseFactory} from '../factories/ExerciseFactory';
 
 import {JsonWorkoutBuilder} from '../builders';
 
@@ -41,6 +42,7 @@ export default class HTML5WorkoutRepository {
 
     let id_index = workout_ids.indexOf(workout.id);
 
+    // if the workout doesn't exist, then we want to push it to the end of the list.
     if (id_index == -1) {
       workout_ids.push(workout.id)
     }
@@ -64,8 +66,20 @@ export default class HTML5WorkoutRepository {
   /**
    * save an exercise for a workout
    */
-  addExercise(exercise: IExercise, workout_id: string) {
+  addExercise(exercise: IExercise, workout_id: string): Promise<T> {
+    exercise.workout_id = workout_id;
 
+    let exerciseModel = ExerciseFactory.create(exercise);
+
+    console.log(exerciseModel);
+
+    let workout_json = JSON.parse(window.localStorage.getItem(workout_id));
+    let workout = null;
+    if(workout_json) {
+      workout = WorkoutFactory.create(workout_json);
+
+      console.log(workout_json);
+    }
   }
 
   /**

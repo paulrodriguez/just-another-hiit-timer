@@ -4,19 +4,15 @@ let repository = WorkoutRepositoryFactory.create('local');
 
 import {SAVE_EXERCISE, DELETE_EXERCISE} from './actionTypes';
 
-export const saveExercise = (content: any) => ({
-    type: SAVE_EXERCISE,
-    payload: content
-});
 
 export const saveExerciseSuccess = (content: any) => ({
   type: SAVE_EXERCISE,
   payload: content
 });
 
-export const saveExercise = (content: any) => {
+export const saveExercise = (content: any, workout_id: string) => {
   return function(dispatch: any) {
-    let promise = repository.saveExercise(content);
+    let promise = repository.addExercise(content, workout_id);
     promise.then(exercise=>{
       dispatch(saveExerciseSuccess(exercise));
     })

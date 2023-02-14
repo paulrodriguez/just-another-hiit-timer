@@ -12,6 +12,20 @@ export class ExerciseFactory
    * @param {Object} data
    */
   public static create(data: object): Exercise {
-    let workout = new Exercise(data.id, data.name, data.sort_order);
+    let exercise = new Exercise(data.id, data.name, data.workout_id, data.sort_order ? data.sort_order : null);
+
+    if (data.work) {
+      exercise.work = data.work;
+    }
+
+    if (data.warmup) {
+      exercise.warmup = data.warmup;
+    }
+
+    if (data.cooldown) {
+      exercise.cooldown = data.cooldown;
+    }
+
+    return exercise;
   }
 }
